@@ -16,29 +16,31 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-bg/80 border-b border-line">
-      <div className="section-container flex items-center justify-between py-4">
+      <div className="section-container flex items-center justify-between py-3 md:py-4">
         <a href="#home" className="font-display font-semibold text-lg">
           Cherni<span className="text-accent">.</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8 text-sm text-dim">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="hover:text-text transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <div className="hidden md:flex items-center gap-8">
+          <div className="flex items-center gap-7 text-sm text-dim">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="hover:text-text transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
 
-        <a
-          href="#contact"
-          className="hidden md:inline-block bg-accent text-white text-sm px-5 py-2.5 rounded-full hover:bg-accent/90 transition-colors"
-        >
-          Me contacter
-        </a>
+          <a
+            href="#contact"
+            className="inline-flex items-center whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent/90 shadow-sm shadow-accent/20 mt-2 mb-2"
+          >
+            Me contacter
+          </a>
+        </div>
 
         <button
           className="md:hidden text-text"
