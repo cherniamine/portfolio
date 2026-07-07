@@ -140,7 +140,7 @@ export default function Contact() {
 
         <div className="flex flex-col md:flex-row justify-between gap-3 text-xs text-dim mt-16 pt-8 border-t border-line">
           <span>© 2026 Cherni Mohamed Amine - Tunis, Tunisie</span>
-          <span className="font-mono">Next.js · Tailwind · Framer Motion</span>
+          <span className="font-mono">Design moderne · Performance · Expérience utilisateur</span>
         </div>
       </div>
     </footer>
