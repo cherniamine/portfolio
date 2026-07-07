@@ -10,7 +10,7 @@ export const experiences: Experience[] = [
   {
     date: "02/2026 - 06/2026",
     company: "Tunisie Telecom",
-    role: "Stagiaire Data Science & IA (PFE)",
+    role: "PFE Ingénieur Data Science & IA",
     current: true,
     missions: [
       "Conception et developpement d'une plateforme AIOps pour la supervision intelligente des logs de 5 plateformes telecom critiques.",

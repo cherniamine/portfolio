@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { useInView } from "framer-motion";
+import { useEffect, useState } from "react";
 
 type AnimatedCounterProps = {
   value: number;
@@ -14,12 +13,9 @@ export default function AnimatedCounter({
   suffix = "",
   duration = 1400,
 }: AnimatedCounterProps) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
     const start = performance.now();
     let frame: number;
 
@@ -31,12 +27,7 @@ export default function AnimatedCounter({
     }
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [inView, value, duration]);
+  }, [value, duration]);
 
-  return (
-    <span ref={ref} className="font-display font-semibold">
-      {display.toLocaleString("fr-FR")}
-      {suffix}
-    </span>
-  );
+  return <span className="font-display font-semibold">{display.toLocaleString("fr-FR")}{suffix}</span>;
 }

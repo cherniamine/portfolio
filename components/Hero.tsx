@@ -139,12 +139,12 @@ export default function Hero() {
         </div>
         
 
-        {/* Colonne robot 3D — masquée sur mobile pour la perf */}
+        {/* Colonne robot 3D */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="hidden lg:block relative h-[520px]"
+          className="relative mt-10 h-[320px] lg:mt-0 lg:h-[520px]"
         >
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
