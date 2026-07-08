@@ -40,7 +40,7 @@ export default function Contact() {
   const [toasts, setToasts] = useState<ToastState[]>([]);
 
   const contactTitle = useMemo(
-    () => "Ouvert aux opportunités où je peux contribuer à des produits data, des plateformes IA et des systèmes de supervision à fort impact.",
+      () => "Ouvert aux opportunités en Data Science, Intelligence Artificielle et Développement Full-Stack pour concevoir des solutions innovantes à fort impact.",
     []
   );
 
@@ -236,9 +236,9 @@ export default function Contact() {
 
         <div className="mt-16 flex flex-col gap-3 border-t border-line pt-8 text-xs text-dim md:flex-row md:justify-between">
           <span>© 2026 Cherni Mohamed Amine - Tunis, Tunisie</span>
-          <span className="font-mono">
-            Design moderne · Performance · Expérience utilisateur
-          </span>
+              <span className="font-mono">
+                Open to AI, Data Science & Machine Learning Opportunities
+              </span>
         </div>
       </div>
     </footer>
