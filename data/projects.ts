@@ -31,11 +31,11 @@ export const projects: Project[] = [
       "Détection d'anomalies, analyse des causes racines, copilote IA et prédiction des incidents sur 5 plateformes telecom critiques (MMG, SMSC, SMPPS, SMPPC, DMC), avec recherche sémantique FAISS et dashboard multi-rôles.",
     tags: ["Python", "FAISS", "FastAPI", "Angular", "MongoDB", "Ollama"],
     metrics: [
-      { label: "Détection d'anomalies", value: "Historique récent" },
-      { label: "Copilot IA", value: "3 rôles" },
-      { label: "Analyse des causes racines", value: "5 plateformes" },
-      { label: "Prédiction des incidents", value: "Temps réel" },
-    ],
+          { value: "5 plateformes", label: "Télécom supervisées" },
+          { value: "RCA + FAISS", label: "Analyse intelligente" },
+          { value: "3 dashboards", label: "Manager • NOC • Engineer" },
+          { value: "IA prédictive", label: "Anticipation des incidents" },
+        ],
     image: "/images/aiops.png",
     media: [
       {
