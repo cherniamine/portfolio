@@ -1,124 +1,169 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import type { ComponentType } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { IconType } from "react-icons";
 import {
-  Atom,
-  BarChart3,
-  BrainCircuit,
-  Braces,
-  Cloud,
-  Code2,
-  Coffee,
-  Container,
-  Database,
-  GitBranch,
-  Layers3,
-  MessageSquareText,
-  Search,
-  Sprout,
-  Triangle,
-  Zap,
-} from "lucide-react";
+  SiPython,
+  SiJavascript,
+  SiMysql,
+  SiMongodb,
+  SiAngular,
+  SiReact,
+  SiSpring,
+  SiFastapi,
+  SiDocker,
+  SiGit,
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import { BrainCircuit, MessageSquareText, Search, BarChart3, Cloud } from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
-import { skills, skillCategories } from "@/data/skills";
+import { TiltCard } from "./ui/TiltCard";
+import { skills } from "@/data/skills";
 
-const skillIcons = {
-  code2: Code2,
-  braces: Braces,
-  coffee: Coffee,
-  database: Database,
-  layers3: Layers3,
-  "brain-circuit": BrainCircuit,
-  "message-square-text": MessageSquareText,
-  search: Search,
-  "bar-chart-3": BarChart3,
-  triangle: Triangle,
-  atom: Atom,
-  sprout: Sprout,
-  zap: Zap,
-  cloud: Cloud,
-  container: Container,
-  "git-branch": GitBranch,
-} as const;
 
-const categoryIcons: Record<string, ComponentType<{ size?: number }>> = {
-  "Langages": Code2,
-  "Data Science & IA": BrainCircuit,
-  "Developpement Web": Atom,
-  "Cloud & DevOps": Cloud,
-  "Bases de donnees": Database,
+// logo réel de marque quand il existe, sinon icône générique en repli
+const skillLogos: Record<string, { icon: IconType; color: string }> = {
+  code2: { icon: SiPython, color: "#3776AB" },
+  braces: { icon: SiJavascript, color: "#F7DF1E" },
+  coffee: { icon: FaJava, color: "#E76F00" },
+  database: { icon: SiMysql, color: "#4479A1" },
+  layers3: { icon: SiMongodb, color: "#47A248" },
+  "brain-circuit": { icon: BrainCircuit, color: "#7C5CFF" },
+  "message-square-text": { icon: MessageSquareText, color: "#22D3EE" },
+  search: { icon: Search, color: "#22D3EE" },
+  "bar-chart-3": { icon: BarChart3, color: "#F0A93A" },
+  triangle: { icon: SiAngular, color: "#DD0031" },
+  atom: { icon: SiReact, color: "#61DAFB" },
+  sprout: { icon: SiSpring, color: "#6DB33F" },
+  zap: { icon: SiFastapi, color: "#009688" },
+  cloud: { icon: Cloud, color: "#0089D6" },
+  container: { icon: SiDocker, color: "#2496ED" },
+  "git-branch": { icon: SiGit, color: "#F05032" },
 };
 
 export default function Skills() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [progress, setProgress] = useState(0);
+
+  const cardMotion = (index: number) => ({
+    initial: { opacity: 0, y: 28, scale: 0.96, filter: "blur(4px)" },
+    whileInView: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+    viewport: { once: true, amount: 0.35 },
+    transition: {
+      duration: 0.55,
+      delay: index * 0.05,
+      ease: "easeOut",
+    },
+  });
+
+  function scrollByCard(direction: 1 | -1) {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * 260, behavior: "smooth" });
+  }
+
+  function updateProgress() {
+    const el = scrollRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setProgress(max > 0 ? (el.scrollLeft / max) * 100 : 0);
+  }
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.addEventListener("scroll", updateProgress);
+    updateProgress();
+    return () => el.removeEventListener("scroll", updateProgress);
+  }, []);
+
   return (
     <section id="skills" className="py-24 border-t border-line">
       <div className="section-container">
         <SectionTitle
           eyebrow="02 · Compétences"
           title="Boîte à outils"
-          description="Survolez une compétence pour voir son niveau et son contexte d'utilisation."
+          description="Fais défiler avec les flèches pour explorer toutes mes compétences."
         />
 
-        <div className="space-y-12">
-          {skillCategories.map((category) => {
-            const CategoryIcon = categoryIcons[category];
+        <div className="relative">
+          {/* Flèche gauche */}
+          <button
+            onClick={() => scrollByCard(-1)}
+            aria-label="Précédent"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-11 h-11 rounded-full border border-accent/40 bg-surface flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-colors hidden sm:flex"
+          >
+            <ChevronLeft size={18} />
+          </button>
 
-            return (
-              <div key={category}>
-                <h3 className="font-mono text-xs uppercase tracking-widest text-dim mb-4 flex items-center gap-2">
-                  {CategoryIcon ? <CategoryIcon size={13} /> : null}
-                  {category}
-                </h3>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {skills
-                    .filter((s) => s.category === category)
-                    .map((skill, i) => {
-                      const SkillIcon =
-                        skillIcons[skill.icon as keyof typeof skillIcons];
+          {/* Carrousel */}
+          <motion.div
+            ref={scrollRef}
+            className="flex gap-5 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory px-1 py-2"
+          >
+            {skills.map((skill, index) => {
+              const logo = skillLogos[skill.icon] ?? {
+                icon: BrainCircuit,
+                color: "#7C5CFF",
+              };
+              const Icon = logo.icon;
 
-                      return (
-                        <motion.div
-                          key={skill.name}
-                          initial={{ opacity: 0, y: 14 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true, margin: "-60px" }}
-                          transition={{ duration: 0.4, delay: i * 0.05 }}
-                          whileHover={{ y: -3 }}
-                          className="group border border-line rounded-xl p-5 bg-surface hover:border-accent/50 transition-colors"
-                        >
-                          <div className="flex items-start justify-between gap-3 mb-2">
-                            <div className="flex items-center gap-3 min-w-0">
-                              <span className="w-9 h-9 rounded-lg bg-accent-soft border border-accent/20 flex items-center justify-center text-accent shrink-0">
-                                {SkillIcon ? <SkillIcon size={18} /> : null}
-                              </span>
-                              <span className="font-medium text-sm truncate">
-                                {skill.name}
-                              </span>
-                            </div>
-                            <span className="font-mono text-xs text-dim shrink-0">
-                              {skill.level}%
-                            </span>
-                          </div>
-                          <div className="h-1.5 rounded-full bg-line overflow-hidden mb-3">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              whileInView={{ width: `${skill.level}%` }}
-                              viewport={{ once: true }}
-                              transition={{ duration: 0.8, delay: i * 0.05 }}
-                              className="h-full rounded-full bg-gradient-accent"
-                            />
-                          </div>
-                          <p className="text-xs text-dim opacity-0 group-hover:opacity-100 transition-opacity">
-                            {skill.description}
-                          </p>
-                        </motion.div>
-                      );
-                    })}
-                </div>
-              </div>
-            );
-          })}
+              return (
+                <TiltCard
+                  key={skill.name}
+                  className="snap-start shrink-0 w-[220px] border border-line rounded-xl p-5 bg-surface hover:border-accent/50 transition-colors"
+                  motionProps={cardMotion(index) as any}
+                >
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center mb-4"
+                    style={{ backgroundColor: `${logo.color}1A` }}
+                  >
+                    <Icon size={28} color={logo.color} />
+                  </div>
+                  <div className="font-medium text-sm mb-1">{skill.name}</div>
+                  <div className="text-xs text-dim mb-3 line-clamp-2 h-8">
+                    {skill.description}
+                  </div>
+                  <div className="flex items-center justify-between mb-1.5">
+                    <span className="font-mono text-[0.7rem] text-dim">
+                      Niveau
+                    </span>
+                    <span className="font-mono text-[0.7rem] text-accent">
+                      {skill.level}%
+                    </span>
+                  </div>
+                  <div className="h-1.5 rounded-full bg-line overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${skill.level}%`,
+                        backgroundColor: logo.color,
+                      }}
+                    />
+                  </div>
+                </TiltCard>
+              );
+            })}
+          </motion.div>
+
+          {/* Flèche droite */}
+          <button
+            onClick={() => scrollByCard(1)}
+            aria-label="Suivant"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-11 h-11 rounded-full border border-accent/40 bg-surface flex items-center justify-center text-accent hover:bg-accent hover:text-white transition-colors hidden sm:flex"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
+
+        {/* Barre de progression du scroll */}
+        <div className="h-1 rounded-full bg-line mt-6 overflow-hidden">
+          <div
+            className="h-full bg-gradient-accent rounded-full transition-all duration-150"
+            style={{ width: `${Math.max(progress, 6)}%` }}
+          />
         </div>
       </div>
     </section>

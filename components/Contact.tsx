@@ -177,7 +177,7 @@ export default function Contact() {
               <span className="flex h-9 w-9 items-center justify-center rounded-full border border-line bg-surface text-text">
                 <MapPin size={16} />
               </span>
-              Zahrouni, El Hrairia, Tunis, Tunisie
+              Tunis, Tunisie
             </div>
             <a
               href="https://www.linkedin.com/in/cherni-mohamed-amine-40158b2b1"
