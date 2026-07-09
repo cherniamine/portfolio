@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   AlertTriangle,
@@ -10,9 +10,14 @@ import {
   MapPin,
   Phone,
   Send,
+  Loader2,
 } from "lucide-react";
-import { useLanguage } from "./LanguageProvider";
-import { localeContent } from "@/data/translations";
+import emailjs from "@emailjs/browser";
+
+// --- Configuration EmailJS ---
+const EMAILJS_SERVICE_ID = "service_qpydlsd";
+const EMAILJS_TEMPLATE_ID = "template_wiwuasn";
+const EMAILJS_PUBLIC_KEY = "vyxoy6W1WEsaA5Fuf";
 
 const recipientEmail = "chernimohamedamine551@gmail.com";
 
@@ -38,13 +43,12 @@ const toneIcons: Record<ToastTone, React.ReactNode> = {
 };
 
 export default function Contact() {
-  const { language } = useLanguage();
-  const [status, setStatus] = useState<"idle" | "opening">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
+    "idle"
+  );
   const [toasts, setToasts] = useState<ToastState[]>([]);
 
-  const contactTitle = useMemo(() => localeContent.contact.title[language], [language]);
-  const availability = localeContent.contact.availability[language];
-
+  // Auto‑disparition des toasts
   useEffect(() => {
     if (!toasts.length) return;
     const timer = window.setTimeout(() => {
@@ -58,7 +62,7 @@ export default function Contact() {
     setToasts((current) => [...current, { ...toast, id }]);
   }
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -70,43 +74,62 @@ export default function Contact() {
     if (!name || !email || !message) {
       pushToast({
         tone: "error",
-        title: localeContent.contact.toast.errorTitle[language],
-        description: localeContent.contact.toast.errorDescription[language],
+        title: "Champs manquants",
+        description: "Veuillez remplir tous les champs du formulaire.",
       });
       return;
     }
 
-    const subject = encodeURIComponent(
-      `Opportunité professionnelle - ${name || "Contact portfolio"}`
-    );
-    const body = encodeURIComponent(
-      [`Nom: ${name}`, `Email: ${email}`, "", message].join("\n")
-    );
-
-    setStatus("opening");
+    setStatus("sending");
 
     try {
-      window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
+      // 🔧 Variables correspondant EXACTEMENT à celles du template EmailJS
+      const templateParams = {
+        name: name,          // correspond à {{name}}
+        email: email,        // correspond à {{email}}
+        message: message,    // correspond à {{message}}
+        time: new Date().toLocaleString("fr-FR", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+      };
+
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      setStatus("sent");
       pushToast({
         tone: "success",
-        title: localeContent.contact.toast.successTitle[language],
-        description: localeContent.contact.toast.successDescription[language],
+        title: "Message envoyé",
+        description:
+          "Votre message a bien été transmis. Je vous répondrai rapidement.",
       });
       form.reset();
-    } catch {
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      setStatus("error");
       pushToast({
         tone: "error",
-        title: localeContent.contact.toast.openErrorTitle[language],
-        description: localeContent.contact.toast.openErrorDescription[language],
+        title: "Erreur d’envoi",
+        description:
+          "Une erreur est survenue. Veuillez réessayer ou m’envoyer un email directement.",
       });
     } finally {
-      setStatus("idle");
+      setTimeout(() => setStatus("idle"), 2500);
     }
   }
 
   return (
     <footer id="contact" className="border-t border-line py-24">
       <div className="section-container relative">
+        {/* Toasts */}
         <AnimatePresence>
           {toasts.length > 0 && (
             <div className="pointer-events-none fixed right-4 top-4 z-[120] flex w-[min(92vw,360px)] flex-col gap-3">
@@ -135,18 +158,21 @@ export default function Contact() {
           )}
         </AnimatePresence>
 
+        {/* Titre */}
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl font-display text-3xl font-semibold md:text-4xl"
+          className="max-w-3xl font-display text-3xl font-semibold md:text-4xl"
         >
-          {contactTitle}
+          Discutons de votre prochain projet IA. Je peux contribuer en CDI, CDD,
+          CVP, freelance ou consulting selon le besoin.
         </motion.h2>
 
+        {/* Badges */}
         <div className="mt-6 flex flex-wrap gap-2">
-          {availability.map((item) => (
+          {["CDI", "CDD", "CVP", "Freelance", "Consulting"].map((item) => (
             <span
               key={item}
               className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-2 text-xs font-medium text-text"
@@ -156,7 +182,9 @@ export default function Contact() {
           ))}
         </div>
 
+        {/* Contact & Formulaire */}
         <div className="mt-12 grid gap-12 md:grid-cols-[1fr_1.3fr]">
+          {/* Colonne gauche : coordonnées */}
           <div className="space-y-5">
             <a
               href={`mailto:${recipientEmail}`}
@@ -204,50 +232,71 @@ export default function Contact() {
             </a>
           </div>
 
+          {/* Colonne droite : formulaire */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.name[language]}</label>
+              <label className="mb-1.5 block text-xs text-dim">Nom</label>
               <input
                 type="text"
                 name="name"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder={localeContent.contact.labels.placeholderName[language]}
+                placeholder="Votre nom"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.email[language]}</label>
+              <label className="mb-1.5 block text-xs text-dim">Email</label>
               <input
                 type="email"
                 name="email"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder={localeContent.contact.labels.placeholderEmail[language]}
+                placeholder="votre@email.com"
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.message[language]}</label>
+              <label className="mb-1.5 block text-xs text-dim">Message</label>
               <textarea
                 name="message"
                 required
                 rows={4}
                 className="w-full resize-none rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder={localeContent.contact.labels.placeholderMessage[language]}
+                placeholder="Parlez-moi de votre opportunité ou de votre projet"
               />
             </div>
             <button
               type="submit"
-              disabled={status === "opening"}
+              disabled={status === "sending"}
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent/90 disabled:opacity-60"
             >
-              <Send size={15} />
-              {status === "opening" ? localeContent.contact.labels.submitting[language] : localeContent.contact.labels.submit[language]}
+              {status === "sending" ? (
+                <>
+                  <Loader2 size={15} className="animate-spin" />
+                  Envoi en cours…
+                </>
+              ) : status === "sent" ? (
+                <>
+                  <CheckCircle2 size={15} />
+                  Envoyé
+                </>
+              ) : status === "error" ? (
+                <>
+                  <AlertTriangle size={15} />
+                  Erreur
+                </>
+              ) : (
+                <>
+                  <Send size={15} />
+                  Envoyer le message
+                </>
+              )}
             </button>
           </form>
         </div>
 
+        {/* Pied de page */}
         <div className="mt-16 flex flex-col gap-3 border-t border-line pt-8 text-xs text-dim md:flex-row md:justify-between">
-          <span>{localeContent.contact.labels.footer[language]}</span>
+          <span>© 2025 Mohamed Amine Cherni</span>
           <span className="font-mono">
             Open to AI, Data Science & Machine Learning Opportunities
           </span>
