@@ -11,6 +11,8 @@ import {
   Phone,
   Send,
 } from "lucide-react";
+import { useLanguage } from "./LanguageProvider";
+import { localeContent } from "@/data/translations";
 
 const recipientEmail = "chernimohamedamine551@gmail.com";
 
@@ -36,13 +38,12 @@ const toneIcons: Record<ToastTone, React.ReactNode> = {
 };
 
 export default function Contact() {
+  const { language } = useLanguage();
   const [status, setStatus] = useState<"idle" | "opening">("idle");
   const [toasts, setToasts] = useState<ToastState[]>([]);
 
-  const contactTitle = useMemo(
-      () => "Ouvert aux opportunités en Data Science, Intelligence Artificielle et Développement Full-Stack pour concevoir des solutions innovantes à fort impact.",
-    []
-  );
+  const contactTitle = useMemo(() => localeContent.contact.title[language], [language]);
+  const availability = localeContent.contact.availability[language];
 
   useEffect(() => {
     if (!toasts.length) return;
@@ -69,8 +70,8 @@ export default function Contact() {
     if (!name || !email || !message) {
       pushToast({
         tone: "error",
-        title: "Message non envoyé",
-        description: "Veuillez remplir tous les champs avant d'envoyer.",
+        title: localeContent.contact.toast.errorTitle[language],
+        description: localeContent.contact.toast.errorDescription[language],
       });
       return;
     }
@@ -88,15 +89,15 @@ export default function Contact() {
       window.location.href = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
       pushToast({
         tone: "success",
-        title: "Messagerie ouverte",
-        description: "Votre message est prêt à être envoyé à mon adresse.",
+        title: localeContent.contact.toast.successTitle[language],
+        description: localeContent.contact.toast.successDescription[language],
       });
       form.reset();
     } catch {
       pushToast({
         tone: "error",
-        title: "Ouverture impossible",
-        description: "Impossible d'ouvrir votre messagerie pour le moment.",
+        title: localeContent.contact.toast.openErrorTitle[language],
+        description: localeContent.contact.toast.openErrorDescription[language],
       });
     } finally {
       setStatus("idle");
@@ -139,12 +140,23 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mb-12 max-w-xl font-display text-3xl font-semibold md:text-4xl"
+          className="max-w-2xl font-display text-3xl font-semibold md:text-4xl"
         >
           {contactTitle}
         </motion.h2>
 
-        <div className="grid gap-12 md:grid-cols-[1fr_1.3fr]">
+        <div className="mt-6 flex flex-wrap gap-2">
+          {availability.map((item) => (
+            <span
+              key={item}
+              className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-2 text-xs font-medium text-text"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+
+        <div className="mt-12 grid gap-12 md:grid-cols-[1fr_1.3fr]">
           <div className="space-y-5">
             <a
               href={`mailto:${recipientEmail}`}
@@ -194,33 +206,33 @@ export default function Contact() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Nom</label>
+              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.name[language]}</label>
               <input
                 type="text"
                 name="name"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="Votre nom"
+                placeholder={localeContent.contact.labels.placeholderName[language]}
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Email</label>
+              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.email[language]}</label>
               <input
                 type="email"
                 name="email"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="votre@email.com"
+                placeholder={localeContent.contact.labels.placeholderEmail[language]}
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Message</label>
+              <label className="mb-1.5 block text-xs text-dim">{localeContent.contact.labels.message[language]}</label>
               <textarea
                 name="message"
                 required
                 rows={4}
                 className="w-full resize-none rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="Parlez-moi de votre opportunité ou de votre projet"
+                placeholder={localeContent.contact.labels.placeholderMessage[language]}
               />
             </div>
             <button
@@ -229,16 +241,16 @@ export default function Contact() {
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent/90 disabled:opacity-60"
             >
               <Send size={15} />
-              {status === "opening" ? "Ouverture..." : "Envoyer le message"}
+              {status === "opening" ? localeContent.contact.labels.submitting[language] : localeContent.contact.labels.submit[language]}
             </button>
           </form>
         </div>
 
         <div className="mt-16 flex flex-col gap-3 border-t border-line pt-8 text-xs text-dim md:flex-row md:justify-between">
-          <span>© 2026 Cherni Mohamed Amine - Tunis, Tunisie</span>
-              <span className="font-mono">
-                Open to AI, Data Science & Machine Learning Opportunities
-              </span>
+          <span>{localeContent.contact.labels.footer[language]}</span>
+          <span className="font-mono">
+            Open to AI, Data Science & Machine Learning Opportunities
+          </span>
         </div>
       </div>
     </footer>

@@ -2,13 +2,16 @@
 
 import { motion } from "framer-motion";
 import SectionTitle from "./ui/SectionTitle";
-import { experiences } from "@/data/experiences";
+import { useLanguage } from "./LanguageProvider";
+import { localeContent } from "@/data/translations";
 
 export default function Experience() {
+  const { language } = useLanguage();
+  const experiences = localeContent.experience.items[language];
   return (
     <section id="experience" className="py-24 border-t border-line">
       <div className="section-container">
-        <SectionTitle eyebrow="03 · Parcours" title="Expériences" />
+        <SectionTitle eyebrow={localeContent.experience.eyebrow[language]} title={localeContent.experience.title[language]} />
 
         <div className="relative pl-8">
           <div className="absolute left-[5px] top-1.5 bottom-1.5 w-px bg-line" />

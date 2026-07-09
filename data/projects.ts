@@ -1,4 +1,16 @@
-﻿export type ProjectMedia = {
+﻿import {
+  Activity,
+  BarChart3,
+  Bot,
+  CalendarDays,
+  Landmark,
+  MessageSquareText,
+  Radar,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
+
+export type ProjectMedia = {
   kind: "image" | "video";
   src: string;
   title: string;
@@ -17,6 +29,22 @@ export type Project = {
   metrics?: { label: string; value: string }[];
   image?: string;
   media?: ProjectMedia[];
+};
+
+export type ProjectIconMeta = {
+  icon: LucideIcon;
+  color: string;
+};
+
+export const projectIcons: Record<string, ProjectIconMeta> = {
+  "aiops-tunisie-telecom": { icon: Radar, color: "#7C5CFF" },
+  "social-analytics-rag-chatbot": { icon: MessageSquareText, color: "#22D3EE" },
+  "medical-deep-learning": { icon: Activity, color: "#F97316" },
+  "insomea-chatbots": { icon: Bot, color: "#06B6D4" },
+  "info-z-migration": { icon: Landmark, color: "#8B5CF6" },
+  "smi-events": { icon: CalendarDays, color: "#0EA5E9" },
+  "atb-dashboard": { icon: BarChart3, color: "#F59E0B" },
+  default: { icon: Sparkles, color: "#7C5CFF" },
 };
 
 export const projects: Project[] = [

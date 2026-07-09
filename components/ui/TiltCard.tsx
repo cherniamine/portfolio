@@ -7,7 +7,7 @@ import {
   useTransform,
   type HTMLMotionProps,
 } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type TiltCardProps = {
   children: React.ReactNode;
@@ -21,6 +21,7 @@ export function TiltCard({
   motionProps,
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [supportsTilt, setSupportsTilt] = useState(false);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const springX = useSpring(rotateX, { stiffness: 220, damping: 18 });
@@ -28,7 +29,17 @@ export function TiltCard({
   const shadowX = useTransform(springY, [-15, 15], ["18px", "-18px"]);
   const shadowY = useTransform(springX, [-15, 15], ["18px", "-18px"]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const update = () => setSupportsTilt(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   function handlePointerMove(event: React.PointerEvent<HTMLDivElement>) {
+    if (!supportsTilt) return;
     const el = ref.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();

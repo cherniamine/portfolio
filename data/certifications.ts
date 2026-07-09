@@ -20,13 +20,30 @@ export type LanguageItem = {
 
 export const languages: LanguageItem[] = [
   { name: "Arabe", level: "Maternelle", proficiency: 100 },
-  { name: "Français", level: "Intermediaire", proficiency: 65 },
-  { name: "Anglais", level: "Intermediaire", proficiency: 65 },
+  { name: "Français", level: "Intermédiaire", proficiency: 65 },
+  { name: "Anglais", level: "Intermédiaire", proficiency: 65 },
 ];
 
 export const stats = [
-  { label: "Stages", value: 5 },
-  { label: "Projets IA", value: 7 },
-  { label: "Technologies", value: 15, suffix: "+" },
-  { label: "Diplome", value: 2, suffix: "+" },
+  { label: "Expériences", value: 5 },
+  { label: "Projets", value: 7 },
+  { label: "Certifications", value: 5 },
+  { label: "Diplômes", value: 2 },
+];
+
+export const education = [
+  {
+    year: "2026",
+    degree: "Diplôme d'ingénieur en informatique",
+    focus: "Data Science & Intelligence Artificielle",
+    school: "Université Centrale",
+    highlight: "Mention Très Bien",
+  },
+  {
+    year: "2023",
+    degree: "Licence nationale",
+    focus: "Big Data et Analyse des données",
+    school: "Université Centrale",
+    highlight: "Fondations en Data",
+  },
 ];

@@ -2,17 +2,20 @@
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-
-const links = [
-  { href: "#about", label: "Profil" },
-  { href: "#skills", label: "Compétences" },
-  { href: "#experience", label: "Expériences" },
-  { href: "#projects", label: "Projets" },
-  { href: "#contact", label: "Contact" },
-];
+import { useLanguage } from "./LanguageProvider";
+import { localeContent } from "@/data/translations";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { language, setLanguage } = useLanguage();
+  const links = [
+    { href: "#about", label: localeContent.nav.links.profile[language] },
+    { href: "#skills", label: localeContent.nav.links.skills[language] },
+    { href: "#experience", label: localeContent.nav.links.experience[language] },
+    { href: "#projects", label: localeContent.nav.links.projects[language] },
+    { href: "#credentials", label: localeContent.nav.links.credentials[language] },
+    { href: "#contact", label: localeContent.nav.links.contact[language] },
+  ];
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-bg/80 border-b border-line">
@@ -34,18 +37,27 @@ export default function Navbar() {
             ))}
           </div>
 
-          <a
-            href="#contact"
-            className="inline-flex items-center whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent/90 shadow-sm shadow-accent/20 mt-2 mb-2"
-          >
-            Me contacter
-          </a>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
+              className="rounded-full border border-line px-3 py-2 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
+            >
+              {language === "fr" ? "EN" : "FR"}
+            </button>
+            <a
+              href="#contact"
+              className="inline-flex items-center whitespace-nowrap rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent/90 shadow-sm shadow-accent/20 mt-2 mb-2"
+            >
+              {localeContent.nav.contactCta[language]}
+            </a>
+          </div>
         </div>
 
         <button
           className="md:hidden text-text"
           onClick={() => setOpen(!open)}
-          aria-label="Ouvrir le menu"
+          aria-label={localeContent.nav.menuAria[language]}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
         </button>
@@ -63,6 +75,16 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
+          <button
+            type="button"
+            onClick={() => {
+              setLanguage(language === "fr" ? "en" : "fr");
+              setOpen(false);
+            }}
+            className="inline-flex items-center justify-start rounded-full border border-line px-3 py-2 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
+          >
+            {language === "fr" ? "English" : "Français"}
+          </button>
         </div>
       )}
     </nav>
