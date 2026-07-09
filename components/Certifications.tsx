@@ -1,9 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
+import {
+  BrainCircuit,
+  Code2,
+  GraduationCap,
+  Network,
+  Trophy,
+  type LucideIcon,
+} from "lucide-react";
 import SectionTitle from "./ui/SectionTitle";
 import { useLanguage } from "./LanguageProvider";
 import { localeContent } from "@/data/translations";
+
+const certificationIcons: Record<string, LucideIcon> = {
+  brain: BrainCircuit,
+  network: Network,
+  graduation: GraduationCap,
+  analytics: Code2,
+  trophy: Trophy,
+};
 
 export default function Certifications() {
   const { language } = useLanguage();
@@ -23,24 +40,30 @@ export default function Certifications() {
             <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-dim">
               {localeContent.certifications.certifications[language]}
             </h3>
-            {certifications.map((cert, index) => (
-              <motion.div
-                key={cert.title}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
-                className="flex items-center justify-between gap-4 border-b border-line pb-3 last:border-none"
-              >
-                <span className="flex items-center gap-3 text-sm">
-                  <span className="text-lg">{cert.emoji}</span>
-                  {cert.title}
-                </span>
-                <span className="whitespace-nowrap font-mono text-xs text-dim">
-                  {cert.org}
-                </span>
-              </motion.div>
-            ))}
+            {certifications.map((cert, index) => {
+              const Icon = certificationIcons[cert.icon] ?? BrainCircuit;
+
+              return (
+                <motion.div
+                  key={cert.title}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="flex items-center justify-between gap-4 border-b border-line pb-3 last:border-none"
+                >
+                  <span className="flex items-center gap-3 text-sm">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-accent/10 text-accent">
+                      <Icon size={18} />
+                    </span>
+                    {cert.title}
+                  </span>
+                  <span className="whitespace-nowrap font-mono text-xs text-dim">
+                    {cert.org}
+                  </span>
+                </motion.div>
+              );
+            })}
 
             <div className="mt-8">
               <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-dim">
@@ -95,7 +118,20 @@ export default function Certifications() {
                     </span>
                   </div>
 
-                  <div className="mt-4 text-sm text-text">{item.school}</div>
+                  <div className="mt-4 flex items-center gap-2 text-sm text-text">
+                    {item.school.toLowerCase().includes("centrale") ? (
+                      <span className="flex h-7 w-7 items-center justify-center rounded-md bg-white/95 p-1 shadow-sm ring-1 ring-white/40">
+                        <Image
+                          src="/images/uc-logo.svg"
+                          alt="Université Centrale"
+                          width={20}
+                          height={20}
+                          className="h-full w-full object-contain"
+                        />
+                      </span>
+                    ) : null}
+                    <span>{item.school}</span>
+                  </div>
                 </motion.article>
               ))}
             </div>

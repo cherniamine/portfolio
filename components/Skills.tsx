@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import type { IconType } from "react-icons";
 import {
@@ -36,8 +37,9 @@ import { useLanguage } from "./LanguageProvider";
 import { localeContent } from "@/data/translations";
 
 type SkillIcon = {
-  icon: IconType;
-  color: string;
+  icon?: IconType;
+  color?: string;
+  imageSrc?: string;
 };
 
 const skillLogos: Record<string, SkillIcon> = {
@@ -54,6 +56,8 @@ const skillLogos: Record<string, SkillIcon> = {
   search: { icon: Search, color: "#22D3EE" },
   "message-square-text": { icon: MessageSquareText, color: "#22D3EE" },
   "bar-chart-3": { icon: BarChart3, color: "#F0A93A" },
+  "power-bi": { imageSrc: "/images/logos/powerbi.svg", color: "#F2C811" },
+  oracle: { imageSrc: "/images/logos/oracle.svg", color: "#C74634" },
   triangle: { icon: SiAngular, color: "#DD0031" },
   atom: { icon: SiReact, color: "#61DAFB" },
   sprout: { icon: SiSpring, color: "#6DB33F" },
@@ -131,10 +135,20 @@ export default function Skills() {
                       >
                         <div className="flex items-start gap-3">
                           <div
-                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
-                            style={{ backgroundColor: `${logo.color}1A` }}
+                            className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-xl"
+                            style={{ backgroundColor: `${logo.color ?? "#7C5CFF"}1A` }}
                           >
-                            <Icon size={22} color={logo.color} />
+                            {logo.imageSrc ? (
+                              <Image
+                                src={logo.imageSrc}
+                                alt={`${skill.name} logo`}
+                                width={24}
+                                height={24}
+                                className="h-6 w-6 object-contain"
+                              />
+                            ) : Icon ? (
+                              <Icon size={22} color={logo.color} />
+                            ) : null}
                           </div>
                           <div className="min-w-0">
                             <div className="text-sm font-medium">{skill.name}</div>
