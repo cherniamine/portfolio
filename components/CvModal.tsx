@@ -65,8 +65,8 @@ export default function CvModal({ open, onClose }: CvModalProps) {
             className="section-container flex min-h-full items-start py-4 md:py-8"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="w-full max-h-[calc(100vh-2rem)] overflow-hidden rounded-[24px] border border-line bg-[#10111a] shadow-2xl md:max-h-[calc(100vh-4rem)]">
-              <div className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-6">
+           <div className="flex h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-[24px] border border-line bg-[#10111a] shadow-2xl md:h-[calc(100vh-4rem)]">
+  <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-6">
                 <div>
                   <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-dim">
                     <FileText size={12} />
@@ -90,8 +90,8 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                 </button>
               </div>
 
-              <div className="grid max-h-full min-h-0 gap-0 overflow-hidden lg:grid-cols-[330px_1fr]">
-                <div className="overflow-y-auto border-b border-line p-5 lg:max-h-full lg:border-b-0 lg:border-r lg:p-6" style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}>
+              <div className="grid min-h-0 flex-1 gap-0 overflow-hidden lg:grid-cols-[330px_1fr]">
+                <div className="overflow-y-auto border-b border-line p-5 lg:h-full lg:border-b-0 lg:border-r lg:p-6" style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}>
                   <div className="space-y-5">
                     <div className="rounded-2xl border border-line bg-surface p-4">
                       <div className="flex items-center gap-3">
