@@ -87,13 +87,13 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                   <div className="flex shrink-0 flex-wrap items-center gap-2 md:gap-3">
                     {/* Télécharger */}
                     <a
-                      href={selected.href}
-                      download={selected.fileName}
-                      className="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-accent/90 md:gap-2 md:px-4 md:py-2.5 md:text-sm"
-                    >
-                      <Download size={14} className="md:size-16" />
-                      <span className="text-[11px] md:text-sm">{localeContent.cv.download[siteLanguage]}</span>
-                    </a>
+                     href={selected.href}
+                          download={selected.fileName}
+                          className="inline-flex items-center justify-center gap-1.5 rounded-full bg-accent px-3 py-2 text-xs font-medium text-white transition-colors hover:bg-accent/90 md:gap-2 md:px-4 md:py-2.5 md:text-sm"
+                        >
+                          <Download className="h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
+                          <span className="text-[11px] md:text-sm">{localeContent.cv.download[siteLanguage]}</span>
+                        </a>
 
                     {/* Ouvrir */}
                     <a
@@ -102,7 +102,7 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                       rel="noreferrer"
                       className="inline-flex items-center justify-center gap-1.5 rounded-full border border-line px-3 py-2 text-xs font-medium text-text transition-colors hover:border-accent hover:text-accent md:gap-2 md:px-4 md:py-2.5 md:text-sm"
                     >
-                      <ExternalLink size={14} className="md:size-16" />
+                      <ExternalLink className="h-3.5 w-3.5 shrink-0 md:h-4 md:w-4" />
                       <span className="text-[11px] md:text-sm">{localeContent.cv.open[siteLanguage]}</span>
                     </a>
 
@@ -111,10 +111,10 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                       type="button"
                       onClick={onClose}
                       className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-dim transition-colors hover:border-accent hover:text-text md:h-10 md:w-10"
-                      aria-label={localeContent.cv.close[siteLanguage]}
-                    >
-                      <X size={16} className="md:size-18" />
-                    </button>
+                        aria-label={localeContent.cv.close[siteLanguage]}
+                      >
+                        <X className="h-4 w-4 shrink-0 md:h-[18px] md:w-[18px]" />
+                      </button>
                   </div>
                 </div>
               </div>
