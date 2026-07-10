@@ -13,6 +13,8 @@ import {
   Loader2,
 } from "lucide-react";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "./LanguageProvider";
+import { localeContent } from "@/data/translations";
 
 // --- Configuration EmailJS ---
 const EMAILJS_SERVICE_ID = "service_qpydlsd";
@@ -43,6 +45,8 @@ const toneIcons: Record<ToastTone, React.ReactNode> = {
 };
 
 export default function Contact() {
+  const { language } = useLanguage();
+  const contactContent = localeContent.contact;
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
@@ -74,8 +78,8 @@ export default function Contact() {
     if (!name || !email || !message) {
       pushToast({
         tone: "error",
-        title: "Champs manquants",
-        description: "Veuillez remplir tous les champs du formulaire.",
+        title: contactContent.toast.errorTitle[language],
+        description: contactContent.toast.errorDescription[language],
       });
       return;
     }
@@ -83,12 +87,11 @@ export default function Contact() {
     setStatus("sending");
 
     try {
-      // 🔧 Variables correspondant EXACTEMENT à celles du template EmailJS
       const templateParams = {
-        name: name,          // correspond à {{name}}
-        email: email,        // correspond à {{email}}
-        message: message,    // correspond à {{message}}
-        time: new Date().toLocaleString("fr-FR", {
+        name: name,
+        email: email,
+        message: message,
+        time: new Date().toLocaleString(language === "fr" ? "fr-FR" : "en-US", {
           day: "2-digit",
           month: "long",
           year: "numeric",
@@ -107,9 +110,8 @@ export default function Contact() {
       setStatus("sent");
       pushToast({
         tone: "success",
-        title: "Message envoyé",
-        description:
-          "Votre message a bien été transmis. Je vous répondrai rapidement.",
+        title: contactContent.toast.successTitle[language],
+        description: contactContent.toast.successDescription[language],
       });
       form.reset();
     } catch (error) {
@@ -117,9 +119,8 @@ export default function Contact() {
       setStatus("error");
       pushToast({
         tone: "error",
-        title: "Erreur d’envoi",
-        description:
-          "Une erreur est survenue. Veuillez réessayer ou m’envoyer un email directement.",
+        title: contactContent.toast.openErrorTitle[language],
+        description: contactContent.toast.openErrorDescription[language],
       });
     } finally {
       setTimeout(() => setStatus("idle"), 2500);
@@ -166,13 +167,12 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="max-w-3xl font-display text-3xl font-semibold md:text-4xl"
         >
-          Discutons de votre prochain projet IA. Je peux contribuer en CDI, CDD,
-          CVP, freelance ou consulting selon le besoin.
+          {contactContent.title[language]}
         </motion.h2>
 
         {/* Badges */}
         <div className="mt-6 flex flex-wrap gap-2">
-          {["CDI", "CDD", "CVP", "Freelance", "Consulting"].map((item) => (
+          {contactContent.availability[language].map((item) => (
             <span
               key={item}
               className="inline-flex items-center rounded-full border border-line bg-surface px-4 py-2 text-xs font-medium text-text"
@@ -235,33 +235,39 @@ export default function Contact() {
           {/* Colonne droite : formulaire */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Nom</label>
+              <label className="mb-1.5 block text-xs text-dim">
+                {contactContent.labels.name[language]}
+              </label>
               <input
                 type="text"
                 name="name"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="Votre nom"
+                placeholder={contactContent.labels.placeholderName[language]}
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Email</label>
+              <label className="mb-1.5 block text-xs text-dim">
+                {contactContent.labels.email[language]}
+              </label>
               <input
                 type="email"
                 name="email"
                 required
                 className="w-full rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="votre@email.com"
+                placeholder={contactContent.labels.placeholderEmail[language]}
               />
             </div>
             <div>
-              <label className="mb-1.5 block text-xs text-dim">Message</label>
+              <label className="mb-1.5 block text-xs text-dim">
+                {contactContent.labels.message[language]}
+              </label>
               <textarea
                 name="message"
                 required
                 rows={4}
                 className="w-full resize-none rounded-lg border border-line bg-surface px-4 py-3 text-sm outline-none transition-colors focus:border-accent"
-                placeholder="Parlez-moi de votre opportunité ou de votre projet"
+                placeholder={contactContent.labels.placeholderMessage[language]}
               />
             </div>
             <button
@@ -272,22 +278,22 @@ export default function Contact() {
               {status === "sending" ? (
                 <>
                   <Loader2 size={15} className="animate-spin" />
-                  Envoi en cours…
+                  {contactContent.labels.submitting[language]}
                 </>
               ) : status === "sent" ? (
                 <>
                   <CheckCircle2 size={15} />
-                  Envoyé
+                  {contactContent.toast.successTitle[language]}
                 </>
               ) : status === "error" ? (
                 <>
                   <AlertTriangle size={15} />
-                  Erreur
+                  {contactContent.toast.errorTitle[language]}
                 </>
               ) : (
                 <>
                   <Send size={15} />
-                  Envoyer le message
+                  {contactContent.labels.submit[language]}
                 </>
               )}
             </button>
@@ -296,7 +302,7 @@ export default function Contact() {
 
         {/* Pied de page */}
         <div className="mt-16 flex flex-col gap-3 border-t border-line pt-8 text-xs text-dim md:flex-row md:justify-between">
-          <span>© 2025 Mohamed Amine Cherni</span>
+          <span>{contactContent.labels.footer[language]}</span>
           <span className="font-mono">
             Open to AI, Data Science & Machine Learning Opportunities
           </span>

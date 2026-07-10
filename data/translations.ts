@@ -131,6 +131,7 @@ export const localeContent = {
         { name: "SQL / PL-SQL", category: "Bases de données", description: "Requêtes, reporting et modélisation relationnelle", icon: "database" },
         { name: "MongoDB", category: "Bases de données", description: "Schémas souples pour produits data et IA", icon: "layers3" },
         { name: "Oracle", category: "Bases de données", description: "SGBD relationnel utilisé en entreprise et en environnement critique", icon: "oracle" },
+        {name: "PostgreSQL",description: "SGBD relationnel open-source, robuste et extensible",icon: "postgresql",category: "Bases de données",},
         { name: "Pandas", category: "Data Science & IA", description: "Manipulation, nettoyage et analyse de données", icon: "pandas" },
         { name: "NumPy", category: "Data Science & IA", description: "Calcul scientifique et opérations matricielles", icon: "numpy" },
         { name: "Scikit-Learn", category: "Data Science & IA", description: "Modèles ML, évaluation et pipelines", icon: "scikit" },
@@ -156,6 +157,7 @@ export const localeContent = {
         { name: "SQL / PL-SQL", category: "Bases de données", description: "Queries, reporting, and relational modeling", icon: "database" },
         { name: "MongoDB", category: "Bases de données", description: "Flexible schemas for data and AI products", icon: "layers3" },
         { name: "Oracle", category: "Bases de données", description: "Enterprise relational database for critical business systems", icon: "oracle" },
+        { name: "PostgreSQL", category: "Databases", description: "Open-source relational DBMS, robust and extensible", icon: "postgresql" },
         { name: "Pandas", category: "Data Science & IA", description: "Data manipulation, cleaning, and analysis", icon: "pandas" },
         { name: "NumPy", category: "Data Science & IA", description: "Scientific computing and matrix operations", icon: "numpy" },
         { name: "Scikit-Learn", category: "Data Science & IA", description: "ML models, evaluation, and pipelines", icon: "scikit" },
@@ -451,7 +453,7 @@ export const localeContent = {
             { kind: "image", src: "/project-media/projects/smi/captures/monthly-view.png", title: "Vue mensuelle", note: "Calendrier des événements sur une période complète." },
             { kind: "image", src: "/project-media/projects/smi/captures/events-list.png", title: "Liste des événements", note: "Vue synthétique des événements planifiés." },
             { kind: "image", src: "/project-media/projects/smi/captures/event-form.png", title: "Formulaire événement", note: "Création et modification d'un événement." },
-            { kind: "image", src: "/project-media/projects/smi/captures/visual-notification.png", title: "Notification visuelle", note: "Retour utilisateur clair après une action." },
+            
           ],
         },
         {
@@ -578,7 +580,7 @@ export const localeContent = {
             { kind: "image", src: "/project-media/projects/smi/captures/monthly-view.png", title: "Monthly view", note: "Event calendar over a complete period." },
             { kind: "image", src: "/project-media/projects/smi/captures/events-list.png", title: "Events list", note: "Synthetic view of planned events." },
             { kind: "image", src: "/project-media/projects/smi/captures/event-form.png", title: "Event form", note: "Create and modify an event." },
-            { kind: "image", src: "/project-media/projects/smi/captures/visual-notification.png", title: "Visual notification", note: "Clear user feedback after an action." },
+           
           ],
         },
         {

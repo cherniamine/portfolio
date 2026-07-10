@@ -302,12 +302,7 @@ export const projects: Project[] = [
         title: "Formulaire événement",
         note: "Création et modification d'un événement.",
       },
-      {
-        kind: "image",
-        src: "/project-media/projects/smi/captures/visual-notification.png",
-        title: "Notification visuelle",
-        note: "Retour utilisateur clair après une action.",
-      },
+      
     ],
   },
   {
@@ -335,16 +330,17 @@ export const projects: Project[] = [
       },
       {
         kind: "image",
-        src: "/project-media/projects/atb/batches-by-agency.jpg",
-        title: "Billes par agence",
-        note: "Répartition opérationnelle détaillée.",
-      },
-      {
-        kind: "image",
         src: "/project-media/projects/atb/gab-deficit.jpg",
         title: "Déficit GABs",
         note: "Analyse des variations et anomalies.",
       },
+      {
+        kind: "image",
+        src: "/project-media/projects/atb/batches-by-agency.jpg",
+        title: "Billes par agence",
+        note: "Répartition opérationnelle détaillée.",
+      },
+      
     ],
   },
 ];

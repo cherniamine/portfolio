@@ -17,6 +17,7 @@ import {
   SiReact,
   SiScikitlearn,
   SiSpring,
+  SiPostgresql,
   SiTypescript,
 } from "react-icons/si";
 import { FaJava } from "react-icons/fa";
@@ -70,6 +71,8 @@ const skillLogos: Record<string, SkillIcon> = {
   cloud: { icon: Cloud, color: "#0089D6" },
   container: { icon: SiDocker, color: "#2496ED" },
   "git-branch": { icon: SiGit, color: "#F05032" },
+  postgresql: { icon: SiPostgresql, color: "#4169E1" },
+
 };
 
 const categoryIcons: Record<string, IconType> = {
