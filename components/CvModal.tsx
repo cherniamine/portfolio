@@ -65,9 +65,11 @@ export default function CvModal({ open, onClose }: CvModalProps) {
             className="section-container flex min-h-full items-start py-4 md:py-8"
             onClick={(event) => event.stopPropagation()}
           >
-           <div className="flex h-[calc(100vh-2rem)] w-full flex-col overflow-hidden rounded-[24px] border border-line bg-[#10111a] shadow-2xl md:h-[calc(100vh-4rem)]">
-  <div className="flex shrink-0 items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-6">
-                <div>
+            <div className="w-full max-h-[calc(100vh-2rem)] overflow-hidden rounded-[24px] border border-line bg-[#10111a] shadow-2xl md:max-h-[calc(100vh-4rem)]">
+              {/* EN-TÊTE avec les boutons d'action */}
+              <div className="flex flex-wrap items-start justify-between gap-4 border-b border-line px-5 py-4 md:px-6">
+                {/* Partie gauche : badge, nom, titre */}
+                <div className="min-w-0 flex-1">
                   <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-[11px] uppercase tracking-[0.2em] text-dim">
                     <FileText size={12} />
                     CV
@@ -80,19 +82,50 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-dim transition-colors hover:border-accent hover:text-text"
-                  aria-label={localeContent.cv.close[siteLanguage]}
-                >
-                  <X size={18} />
-                </button>
+                {/* Partie droite : boutons + fermeture */}
+                <div className="flex shrink-0 flex-wrap items-center gap-3">
+                  {/* Télécharger */}
+                  <a
+                    href={selected.href}
+                    download={selected.fileName}
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent/90"
+                  >
+                    <Download size={16} />
+                    <span className="hidden sm:inline">{localeContent.cv.download[siteLanguage]}</span>
+                  </a>
+
+                  {/* Ouvrir */}
+                  <a
+                    href={selected.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-4 py-2.5 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
+                  >
+                    <ExternalLink size={16} />
+                    <span className="hidden sm:inline">{localeContent.cv.open[siteLanguage]}</span>
+                  </a>
+
+                  {/* Fermeture */}
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-dim transition-colors hover:border-accent hover:text-text"
+                    aria-label={localeContent.cv.close[siteLanguage]}
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
               </div>
 
-              <div className="grid min-h-0 flex-1 gap-0 overflow-hidden lg:grid-cols-[330px_1fr]">
-                <div className="overflow-y-auto border-b border-line p-5 lg:h-full lg:border-b-0 lg:border-r lg:p-6" style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}>
+              {/* Contenu principal : grille */}
+              <div className="grid max-h-full min-h-0 gap-0 overflow-hidden lg:grid-cols-[330px_1fr]">
+                {/* Panneau gauche : informations (plus de boutons) */}
+                <div
+                  className="overflow-y-auto border-b border-line p-5 lg:max-h-full lg:border-b-0 lg:border-r lg:p-6"
+                  style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+                >
                   <div className="space-y-5">
+                    {/* Sélecteur de langue + résumé */}
                     <div className="rounded-2xl border border-line bg-surface p-4">
                       <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-accent">
@@ -129,6 +162,7 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                       </div>
                     </div>
 
+                    {/* Indicateurs rapides */}
                     <div className="grid grid-cols-2 gap-3">
                       <div className="rounded-2xl border border-line bg-surface p-4">
                         <div className="text-xs uppercase tracking-widest text-dim">
@@ -163,29 +197,10 @@ export default function CvModal({ open, onClose }: CvModalProps) {
                         </div>
                       </div>
                     </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <a
-                        href={selected.href}
-                        download={selected.fileName}
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-4 py-3 text-sm font-medium text-white transition-colors hover:bg-accent/90"
-                      >
-                        <Download size={16} />
-                        {localeContent.cv.download[siteLanguage]}
-                      </a>
-                      <a
-                        href={selected.href}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center justify-center gap-2 rounded-full border border-line px-4 py-3 text-sm font-medium text-text transition-colors hover:border-accent hover:text-accent"
-                      >
-                        <ExternalLink size={16} />
-                        {localeContent.cv.open[siteLanguage]}
-                      </a>
-                    </div>
                   </div>
                 </div>
 
+                {/* Panneau droit : aperçu PDF */}
                 <div className="min-h-0 overflow-hidden p-4 md:p-6">
                   <div className="h-full rounded-2xl border border-line bg-black/30 p-2">
                     <iframe
