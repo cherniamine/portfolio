@@ -70,19 +70,19 @@ export const skills: Skill[] = [
     name: "FAISS",
     category: "Data Science & IA",
     description: "Recherche sémantique et similarité vectorielle",
-    icon: "search",
+    icon: "radar",
   },
   {
     name: "RAG / LLM",
     category: "Data Science & IA",
     description: "Sentence Transformers, assistants IA, copilot",
-    icon: "message-square-text",
+    icon: "bot",
   },
   {
     name: "NLP",
     category: "Data Science & IA",
     description: "Extraction de sens et traitement du langage",
-    icon: "search",
+    icon: "languages",
   },
   {
     name: "Power BI",
