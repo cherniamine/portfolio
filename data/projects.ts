@@ -275,7 +275,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/cherniamine/Gestion-Event",
     description:
       "Application web complète pour la création et la gestion d'événements, développée en Java et Spring Boot.",
-    tags: ["Java", "Spring Boot"],
+    tags: ["Java", "Spring Boot", "Angular"],
     image: "/images/smi-events.png",
     media: [
       {
@@ -302,6 +302,31 @@ export const projects: Project[] = [
         title: "Formulaire événement",
         note: "Création et modification d'un événement.",
       },
+      { 
+        kind: "image",
+        src: "/project-media/projects/smi/captures/visual-notification.png",
+        title: "Notification visuelle",
+        note: "alert visuelle pour les événements à venir.",
+      },
+        { 
+        kind: "image",
+        src: "/project-media/projects/smi/captures/mail-notification.png",
+        title: "Notification par courriel",
+        note: "Alerte par courriel pour les événements à venir.",
+      },
+      { 
+        kind: "image",
+        src: "/project-media/projects/smi/captures/to-do-list.png",
+        title: "Liste des tâches",
+        note: "Gestion des tâches à accomplir.",
+      },
+      { 
+        kind: "image",
+        src: "/project-media/projects/smi/captures/profil.png",
+        title: "Profil utilisateur",
+        note: "Gestion des informations personnelles.",
+      },
+
       
     ],
   },

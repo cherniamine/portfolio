@@ -447,13 +447,16 @@ export const localeContent = {
           emoji: "🎟️",
           githubUrl: "https://github.com/cherniamine/Gestion-Event",
           description: "Application web complète pour la création et la gestion d'événements, développée en Java et Spring Boot.",
-          tags: ["Java", "Spring Boot"],
+          tags: ["Java", "Spring Boot","Angular"],
           media: [
             { kind: "image", src: "/project-media/projects/smi/captures/login.png", title: "Connexion", note: "Point d'entrée sécurisé de l'application." },
             { kind: "image", src: "/project-media/projects/smi/captures/monthly-view.png", title: "Vue mensuelle", note: "Calendrier des événements sur une période complète." },
             { kind: "image", src: "/project-media/projects/smi/captures/events-list.png", title: "Liste des événements", note: "Vue synthétique des événements planifiés." },
             { kind: "image", src: "/project-media/projects/smi/captures/event-form.png", title: "Formulaire événement", note: "Création et modification d'un événement." },
-            
+            { kind: "image", src: "/project-media/projects/smi/captures/visual-notification.png", title: "Notification visuelle", note: "Alerte visuelle pour les événements à venir." },
+            { kind: "image", src: "/project-media/projects/smi/captures/mail-notification.png", title: "Notification par courriel", note: "Alerte par courriel pour les événements à venir." },
+            { kind: "image", src: "/project-media/projects/smi/captures/to-do-list.png", title: "Liste des tâches", note: "Gestion des tâches à accomplir." },
+            { kind: "image", src: "/project-media/projects/smi/captures/profil.png", title: "Profil utilisateur", note: "Gestion des informations personnelles." },
           ],
         },
         {
@@ -574,13 +577,16 @@ export const localeContent = {
           emoji: "🎟️",
           githubUrl: "https://github.com/cherniamine/Gestion-Event",
           description: "Complete web application for creating and managing events, developed in Java and Spring Boot.",
-          tags: ["Java", "Spring Boot"],
+          tags: ["Java", "Spring Boot", "Angular"],
           media: [
             { kind: "image", src: "/project-media/projects/smi/captures/login.png", title: "Login", note: "Secure entry point for the application." },
             { kind: "image", src: "/project-media/projects/smi/captures/monthly-view.png", title: "Monthly view", note: "Event calendar over a complete period." },
             { kind: "image", src: "/project-media/projects/smi/captures/events-list.png", title: "Events list", note: "Synthetic view of planned events." },
             { kind: "image", src: "/project-media/projects/smi/captures/event-form.png", title: "Event form", note: "Create and modify an event." },
-           
+            { kind: "image", src: "/project-media/projects/smi/captures/visual-notification.png", title: "Visual notification", note: "Visual alert for upcoming events." },
+            { kind: "image", src: "/project-media/projects/smi/captures/mail-notification.png", title: "Email notification", note: "Email alert for upcoming events." },
+            { kind: "image", src: "/project-media/projects/smi/captures/to-do-list.png", title: "To-do list", note: "Managing tasks to be completed." },
+            { kind: "image", src: "/project-media/projects/smi/captures/profil.png", title: "User profile", note: "Managing personal information." },
           ],
         },
         {
