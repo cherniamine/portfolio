@@ -176,54 +176,132 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "insomea-chatbots",
-    title: "Plateforme de chatbots IA",
-    org: "Stage · Société Insomea",
-    emoji: "🤖",
-    githubUrl: "https://github.com/cherniamine/Chatbot-as-a-service",
-    description:
-      "Création et déploiement de chatbots intelligents (texte, voix, image) avec moteur RAG et services Azure Cognitive.",
-    tags: ["Python", "FastAPI", "Azure OpenAI", "RAG"],
-    image: "/images/insomea.png",
-    media: [
-      {
-        kind: "image",
-        src: "/project-media/projects/insomea/captures/login.png",
-        title: "Connexion",
-        note: "Interface d'authentification du service chatbot.",
-      },
-      {
-        kind: "image",
-        src: "/project-media/projects/insomea/captures/admin-dashboard.png",
-        title: "Tableau de bord",
-        note: "Vue d'ensemble pour l'administration et le suivi.",
-      },
-      {
-        kind: "image",
-        src: "/project-media/projects/insomea/captures/chatbots.png",
-        title: "Gestion des chatbots",
-        note: "Création, modification et supervision des assistants.",
-      },
-      {
-        kind: "image",
-        src: "/project-media/projects/insomea/captures/chat-interface.png",
-        title: "Conversation",
-        note: "Interface utilisateur pour interagir avec un chatbot.",
-      },
-      {
-        kind: "image",
-        src: "/project-media/projects/insomea/captures/users.png",
-        title: "Utilisateurs",
-        note: "Gestion des accès et supervision des utilisateurs.",
-      },
-      {
-        kind: "video",
-        src: "/project-media/projects/insomea/demo.mp4",
-        title: "Démo chatbots",
-        note: "Création et déploiement de chatbots multicanaux.",
-      },
-    ],
-  },
+  "slug": "insomea-chatbots",
+  "title": "Plateforme de chatbots IA",
+  "org": "Stage · Société Insomea",
+  "emoji": "🤖",
+  "githubUrl": "https://github.com/cherniamine/Chatbot-as-a-service",
+  "description": "Création et déploiement de chatbots intelligents (texte, voix, image) avec moteur RAG et services Azure Cognitive.",
+  "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG"],
+  "metrics": [
+    { "label": "Précision RAG", "value": "71,2%" },
+    { "label": "Latence moyenne", "value": "1,8s" },
+    { "label": "Langues supportées (Français, Anglais, Arabe)", "value": "3" },
+    { "label": "Modalités (Texte et Voix)", "value": "2" }
+  ],
+  "image": "/images/insomea.png",
+  "media": [
+    {
+      "kind": "video",
+      "src": "/project-media/projects/insomea/admin.mp4",
+      "title": "Démo Interface Admin",
+      "note": "Création et déploiement de chatbots multicanaux, gérer les utilisateurs et uploader les documents pour chaque chatbot pour le rendre actif."
+    },
+    {
+      "kind": "video",
+      "src": "/project-media/projects/insomea/user.mp4",
+      "title": "Démo Interface Utilisateur",
+      "note": "Interface utilisateur pour interagir avec un chatbot et voir l'historique des conversations."
+    },
+    {
+      "kind": "video",
+      "src": "/project-media/projects/insomea/inscription-gmail.mp4",
+      "title": "Démo Inscription via Gmail",
+      "note": "Processus d'inscription et de connexion via un compte Gmail pour accéder à la plateforme."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/login.png",
+      "title": "Page de connexion",
+      "note": "Authentification sécurisée pour accéder au service de chatbot."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/admin-dashboard.png",
+      "title": "Tableau de bord administrateur",
+      "note": "Vue d'ensemble des statistiques clés : chatbots, documents, utilisateurs supervisés et statut d'activité."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/chatbots.png",
+      "title": "Liste des chatbots",
+      "note": "Affichage de tous les chatbots avec leur ID, statut (actif/inactif) et options de gestion."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/chatbot-create.png",
+      "title": "Création d'un nouveau chatbot",
+      "note": "Formulaire de création avec nom et description pour personnaliser l'assistant."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Chatbot-Documents-list.png",
+      "title": "Gestion des documents d'un chatbot",
+      "note": "Sélection d'un chatbot et liste des documents qui lui sont liés avec leurs métadonnées."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Chatbot-Document-upload.png",
+      "title": "Import de documents",
+      "note": "Interface de glisser-déposer pour importer des documents (PDF, DOCX, TXT, CSV, MD) jusqu'à 10 Mo."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Chatbots-list.png",
+      "title": "Liste détaillée des chatbots",
+      "note": "Présentation complète des chatbots avec identifiants et statut (actif/inactif)."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/chat-history.png",
+      "title": "Historique des conversations",
+      "note": "Visualisation de l'historique des échanges avec un chatbot, incluant les questions, réponses et résumés."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/chat-interface.png",
+      "title": "Interface de conversation",
+      "note": "Chat en temps réel avec affichage des sources utilisées pour les réponses."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Dashboared-ARABE.png",
+      "title": "Tableau de bord (version arabe)",
+      "note": "Version arabisée du tableau de bord pour une accessibilité multilingue."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Dashboared-english.png",
+      "title": "Tableau de bord (version anglaise)",
+      "note": "Version anglaise du tableau de bord avec les indicateurs clés de gestion."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Profil-Admin.png",
+      "title": "Profil administrateur",
+      "note": "Gestion du profil, des permissions et des statistiques personnelles."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Profil-User.png",
+      "title": "Profil Utilisateur",
+      "note": "Vue du profil utilisateur avec permissions limitées, informations de l'organisation, accès à l'historique des conversations et paramètres de sécurité."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/User-create.png",
+      "title": "Création d'un utilisateur",
+      "note": "Formulaire d'ajout d'un nouvel utilisateur avec attribution d'un rôle (Admin/User)."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Users.png",
+      "title": "Gestion des utilisateurs supervisés",
+      "note": "Liste des utilisateurs avec leurs rôles et actions de supervision."
+    },
+    
+  ]
+},
   {
     slug: "info-z-migration",
     title: "Migration bancaire vers Spring Boot & Angular",
@@ -232,7 +310,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/cherniamine/Domiciliation",
     description:
       "Migration du module de domiciliation d'Oracle Forms vers une architecture moderne pour banques et Banque Centrale.",
-    tags: ["Java", "Spring Boot", "Angular", "Oracle", "Docker" ],
+    tags: ["Java", "Spring Boot" ,"Oracle", "Docker", "Angular" ],
     image: "/images/info-z.png",
     media: [
       {
