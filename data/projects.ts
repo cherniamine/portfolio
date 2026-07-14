@@ -232,7 +232,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/cherniamine/Domiciliation",
     description:
       "Migration du module de domiciliation d'Oracle Forms vers une architecture moderne pour banques et Banque Centrale.",
-    tags: ["Spring Boot", "Angular", "Oracle"],
+    tags: ["Java", "Spring Boot", "Angular", "Oracle", "Docker" ],
     image: "/images/info-z.png",
     media: [
       {
@@ -290,6 +290,12 @@ export const projects: Project[] = [
         title: "Vue mensuelle",
         note: "Calendrier des événements sur une période complète.",
       },
+      { 
+        kind: "image",
+        src: "/project-media/projects/smi/captures/to-do-list.png",
+        title: "Liste des tâches",
+        note: "Gestion des tâches à accomplir.",
+      },
       {
         kind: "image",
         src: "/project-media/projects/smi/captures/events-list.png",
@@ -301,6 +307,12 @@ export const projects: Project[] = [
         src: "/project-media/projects/smi/captures/event-form.png",
         title: "Formulaire événement",
         note: "Création et modification d'un événement.",
+      },
+      {
+        kind: "image",
+        src: "/project-media/projects/smi/captures/event-modif.png",
+        title: "Modification d'événement",
+        note: "Modification d'un événement.",
       },
       { 
         kind: "image",
@@ -314,12 +326,7 @@ export const projects: Project[] = [
         title: "Notification par courriel",
         note: "Alerte par courriel pour les événements à venir.",
       },
-      { 
-        kind: "image",
-        src: "/project-media/projects/smi/captures/to-do-list.png",
-        title: "Liste des tâches",
-        note: "Gestion des tâches à accomplir.",
-      },
+      
       { 
         kind: "image",
         src: "/project-media/projects/smi/captures/profil.png",
