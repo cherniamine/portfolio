@@ -415,40 +415,40 @@ export const projects: Project[] = [
       
     ],
   },
-  {
+{
     slug: "atb-dashboard",
     title: "Dashboard financier & modèles prédictifs",
     org: "Stage PFE · ATB Banque",
     emoji: "📊",
     githubUrl: "https://github.com/cherniamine/Dashboard-ATB-",
     description:
-      "Tableau de bord Power BI pour le suivi des KPI, avec algorithmes prédictifs pour l'optimisation des liquidités.",
-    tags: ["Power BI", "SQL", "Predictive Analytics"],
+      "Dashboard Power BI & ETL Python avec modèles prédictifs pour l'optimisation de la gestion des liquidités bancaires.",
+    tags: ["Python", "Power BI", "ETL", "Predictive Analytics", "SQL"],
     image: "/images/atb-dashboard.png",
     media: [
       {
         kind: "image",
         src: "/project-media/projects/atb/dashboard.jpg",
         title: "Tableau de bord",
-        note: "Vue KPI pour le suivi bancaire.",
+        note: "Vue consolidée des KPI : chargement/distribution, durée de conservation et carte interactive du réseau.",
       },
       {
         kind: "image",
         src: "/project-media/projects/atb/forecast.jpg",
         title: "Prévision",
-        note: "Projection des encaissements et besoins.",
+        note: "Prévisions Power BI alimentées par des scripts Python (ARIMA et régression linéaire) pour anticiper les besoins en billets, le déficit, les stocks et la durée de conservation.",
       },
       {
         kind: "image",
         src: "/project-media/projects/atb/gab-deficit.jpg",
         title: "Déficit GABs",
-        note: "Analyse des variations et anomalies.",
+        note: "Suivi temporel du déficit réseau sur 4 ans (2019-2022) avec détection des pics anormaux.",
       },
       {
         kind: "image",
-        src: "/project-media/projects/atb/batches-by-agency.jpg",
+        src: "/project-media/projects/atb/batches-by-agency.png",
         title: "Billes par agence",
-        note: "Répartition opérationnelle détaillée.",
+        note: "Comparatif détaillé des billets chargés vs distribués par agence.",
       },
       
     ],
