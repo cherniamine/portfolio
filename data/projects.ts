@@ -184,10 +184,10 @@ export const projects: Project[] = [
   "description": "Création et déploiement de chatbots intelligents (texte, voix, image) avec moteur RAG et services Azure Cognitive.",
   "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG"],
   "metrics": [
-    { "label": "Précision RAG", "value": "71,2%" },
-    { "label": "Latence moyenne", "value": "1,8s" },
-    { "label": "Langues supportées (Français, Anglais, Arabe)", "value": "3" },
-    { "label": "Modalités (Texte et Voix)", "value": "2" }
+  { "label": "Précision RAG", "value": "71,2%" },
+  { "label": "Latence moyenne", "value": "1,8s" },
+  { "label": "Langues supportées", "value": "FR / EN / AR" },
+  { "label": "Modalités", "value": "Texte + Voix" }
   ],
   "image": "/images/insomea.png",
   "media": [

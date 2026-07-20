@@ -413,13 +413,13 @@ export const localeContent = {
   "org": "Stage · Société Insomea",
   "emoji": "🤖",
   "githubUrl": "https://github.com/cherniamine/Chatbot-as-a-service",
-  "description": "Création et déploiement de chatbots intelligents (texte, voix, image) avec moteur RAG et services Azure Cognitive.",
-  "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG"],
+  "description": "Création et déploiement de chatbots intelligents (texte, voix, image) avec moteur RAG (Azure OpenAI, FAISS) et services Azure Cognitive.",
+  "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG", "MongoDB", "FAISS", "Angular"],
   "metrics": [
     { "label": "Précision RAG", "value": "71,2%" },
     { "label": "Latence moyenne", "value": "1,8s" },
-    { "label": "Langues supportées (Français, Anglais, Arabe)", "value": "3" },
-    { "label": "Modalités (Texte et Voix)", "value": "2" }
+    { "label": "Langues supportées", "value": "FR / EN / AR" },
+    { "label": "Modalités", "value": "Texte + Voix" }
   ],
   "image": "/images/insomea.png",
   "media": [
@@ -427,13 +427,13 @@ export const localeContent = {
       "kind": "video",
       "src": "/project-media/projects/insomea/admin.mp4",
       "title": "Démo Interface Admin",
-      "note": "Création et déploiement de chatbots multicanaux, gestion des utilisateurs, et upload de documents pour rendre les chatbots actifs."
+      "note": "Création et déploiement de chatbots multicanaux, gérer les utilisateurs et uploader les documents pour chaque chatbot pour le rendre actif."
     },
     {
       "kind": "video",
       "src": "/project-media/projects/insomea/user.mp4",
       "title": "Démo Interface Utilisateur",
-      "note": "Interface utilisateur pour interagir avec les chatbots et consulter l'historique des conversations."
+      "note": "Interface utilisateur pour interagir avec un chatbot et voir l'historique des conversations."
     },
     {
       "kind": "video",
@@ -443,45 +443,33 @@ export const localeContent = {
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Logiin.png",
-      "title": "Connexion",
-      "note": "Interface d'authentification du service chatbot avec gestion du mot de passe oublié et création de compte."
+      "src": "/project-media/projects/insomea/captures/login.png",
+      "title": "Page de connexion",
+      "note": "Authentification sécurisée pour accéder au service de chatbot."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/admin-dashboard.png",
       "title": "Tableau de bord administrateur",
-      "note": "Vue d'ensemble des statistiques : total des chatbots, documents téléchargés, utilisateurs supervisés et statut d'activité."
-    },
-    {
-      "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Dashboared-english.png",
-      "title": "Tableau de bord (version anglaise)",
-      "note": "Version anglaise du tableau de bord avec accès rapide aux fonctions de gestion."
-    },
-    {
-      "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Dashboared-ARABE.png",
-      "title": "Tableau de bord (version arabe)",
-      "note": "Version arabisée du tableau de bord pour une accessibilité multilingue."
+      "note": "Vue d'ensemble des statistiques clés : chatbots, documents, utilisateurs supervisés et statut d'activité."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Chatbots-list.png",
-      "title": "Liste détaillée des chatbots",
-      "note": "Liste complète des chatbots avec leurs ID, statut actif/inactif et accès aux fonctionnalités."
+      "title": "Liste des chatbots",
+      "note": "Affichage de tous les chatbots avec leur ID, statut (actif/inactif) et options de gestion."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/chatbot-create.png",
-      "title": "Création d'un chatbot",
-      "note": "Formulaire de création d'un nouvel assistant avec nom et description personnalisée."
+      "title": "Création d'un nouveau chatbot",
+      "note": "Formulaire de création avec nom et description pour personnaliser l'assistant."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Chatbot-Documents-list.png",
-      "title": "Liste des documents liés",
-      "note": "Sélection d'un chatbot et affichage des documents associés avec filtrage par date."
+      "title": "Gestion des documents d'un chatbot",
+      "note": "Sélection d'un chatbot et liste des documents qui lui sont liés avec leurs métadonnées."
     },
     {
       "kind": "image",
@@ -491,39 +479,51 @@ export const localeContent = {
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/chat-interface.png",
-      "title": "Interface de conversation",
-      "note": "Chat en temps réel avec affichage des sources utilisées pour les réponses générées."
-    },
-    {
-      "kind": "image",
       "src": "/project-media/projects/insomea/captures/chat-history.png",
       "title": "Historique des conversations",
-      "note": "Visualisation des échanges passés avec questions, réponses, résumés et sources."
+      "note": "Visualisation de l'historique des échanges avec un chatbot, incluant les questions, réponses et résumés."
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Users.png",
-      "title": "Utilisateurs supervisés",
-      "note": "Liste des utilisateurs avec leurs rôles, emails et actions de supervision."
+      "src": "/project-media/projects/insomea/captures/chat-interface.png",
+      "title": "Interface de conversation",
+      "note": "Chat en temps réel avec affichage des sources utilisées pour les réponses."
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/user-create.png",
-      "title": "Création d'un utilisateur",
-      "note": "Formulaire d'ajout d'un nouvel utilisateur avec attribution d'un rôle (Admin/User)."
+      "src": "/project-media/projects/insomea/captures/Dashboared-ARABE.png",
+      "title": "Tableau de bord (version arabe)",
+      "note": "Version arabisée du tableau de bord pour une accessibilité multilingue."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Dashboared-english.png",
+      "title": "Tableau de bord (version anglaise)",
+      "note": "Version anglaise du tableau de bord avec les indicateurs clés de gestion."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Profil-Admin.png",
       "title": "Profil administrateur",
-      "note": "Gestion du profil, des permissions, du changement d'avatar et des statistiques personnelles."
+      "note": "Gestion du profil, des permissions et des statistiques personnelles."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Profil-User.png",
       "title": "Profil Utilisateur",
       "note": "Vue du profil utilisateur avec permissions limitées, informations de l'organisation, accès à l'historique des conversations et paramètres de sécurité."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/User-create.png",
+      "title": "Création d'un utilisateur",
+      "note": "Formulaire d'ajout d'un nouvel utilisateur avec attribution d'un rôle (Admin/User)."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Users.png",
+      "title": "Gestion des utilisateurs supervisés",
+      "note": "Liste des utilisateurs avec leurs rôles et actions de supervision."
     }
   ]
 },
@@ -667,17 +667,17 @@ export const localeContent = {
         },
         {
   "slug": "insomea-chatbots",
-  "title": "AI chatbot platform",
-  "org": "Internship · Insomea",
+  "title": "AI Chatbot Platform",
+  "org": "Internship · Insomea Company",
   "emoji": "🤖",
   "githubUrl": "https://github.com/cherniamine/Chatbot-as-a-service",
-  "description": "Creation and deployment of intelligent chatbots (text, voice, image) with a RAG engine and Azure Cognitive services.",
-  "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG"],
+  "description": "Creation and deployment of intelligent chatbots (text, voice, image) with RAG engine (Azure OpenAI, FAISS) and Azure Cognitive Services.",
+  "tags": ["Python", "FastAPI", "Azure OpenAI", "RAG", "MongoDB", "FAISS", "Angular"],
   "metrics": [
-    { "label": "RAG accuracy", "value": "71.2%" },
-    { "label": "Average latency", "value": "1.8s" },
-    { "label": "Supported languages (French, English, Arabic)", "value": "3" },
-    { "label": "Modalities (Text and Voice)", "value": "2" }
+    { "label": "RAG Accuracy", "value": "71.2%" },
+    { "label": "Average Latency", "value": "1.8s" },
+    { "label": "Supported Languages", "value": "FR / EN / AR" },
+    { "label": "Modalities", "value": "Text + Voice" }
   ],
   "image": "/images/insomea.png",
   "media": [
@@ -685,104 +685,103 @@ export const localeContent = {
       "kind": "video",
       "src": "/project-media/projects/insomea/admin.mp4",
       "title": "Admin Interface Demo",
-      "note": "Create and deploy multichannel chatbots, manage users, and upload documents to activate chatbots."
+      "note": "Create and deploy multichannel chatbots, manage users, and upload documents for each chatbot to make it active."
     },
     {
       "kind": "video",
       "src": "/project-media/projects/insomea/user.mp4",
       "title": "User Interface Demo",
-      "note": "User interface to interact with chatbots and view conversation history."
+      "note": "User interface to interact with a chatbot and view conversation history."
     },
-     {
+    {
       "kind": "video",
       "src": "/project-media/projects/insomea/inscription-gmail.mp4",
-      "title": "Gmail Registration Demo",
-      "note": "Registration and login process via a Gmail account to access the platform."
+      "title": "Gmail Sign-up Demo",
+      "note": "Sign-up and login process via a Gmail account to access the platform."
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Logiin.png",
-      "title": "Login",
-      "note": "Authentication interface for the chatbot service."
+      "src": "/project-media/projects/insomea/captures/login.png",
+      "title": "Login Page",
+      "note": "Secure authentication to access the chatbot service."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/admin-dashboard.png",
-      "title": "Dashboard",
-      "note": "Overview view for administration and monitoring."
+      "title": "Admin Dashboard",
+      "note": "Overview of key statistics: chatbots, documents, supervised users, and activity status."
     },
-    {
-      "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Dashboared-english.png",
-      "title": "Dashboard (English)",
-      "note": "English version of the dashboard with quick access to management functions."
-    },
-    {
-      "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Dashboared-ARABE.png",
-      "title": "Dashboard (Arabic)",
-      "note": "Arabic version of the dashboard for multilingual accessibility."
-    },
-
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Chatbots-list.png",
       "title": "Chatbot List",
-      "note": "Full list of chatbots with IDs, active/inactive status, and access to features."
+      "note": "Display of all chatbots with their ID, status (active/inactive), and management options."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/chatbot-create.png",
-      "title": "Create Chatbot",
-      "note": "Form to create a new assistant with custom name and description."
+      "title": "Create a New Chatbot",
+      "note": "Creation form with name and description to customize the assistant."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Chatbot-Documents-list.png",
-      "title": "Linked Documents",
-      "note": "Select a chatbot and view associated documents with date filtering."
+      "title": "Chatbot Document Management",
+      "note": "Select a chatbot and view the list of linked documents with their metadata."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Chatbot-Document-upload.png",
       "title": "Document Upload",
-      "note": "Drag-and-drop interface to import documents (PDF, DOCX, TXT, CSV, MD) up to 10MB."
-    },
-    {
-      "kind": "image",
-      "src": "/project-media/projects/insomea/captures/chat-interface.png",
-      "title": "Conversation Interface",
-      "note": "Real-time chat with sources displayed for generated responses."
+      "note": "Drag-and-drop interface to upload documents (PDF, DOCX, TXT, CSV, MD) up to 10 MB."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/chat-history.png",
       "title": "Conversation History",
-      "note": "View past exchanges with questions, answers, summaries, and sources."
+      "note": "View the history of exchanges with a chatbot, including questions, answers, and summaries."
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/Users.png",
-      "title": "Supervised Users",
-      "note": "List of supervised users with roles, emails, and management actions."
+      "src": "/project-media/projects/insomea/captures/chat-interface.png",
+      "title": "Chat Interface",
+      "note": "Real-time chat with display of sources used for responses."
     },
     {
       "kind": "image",
-      "src": "/project-media/projects/insomea/captures/User-create.png",
-      "title": "Create User",
-      "note": "Form to add a new user with role assignment (Admin/User)."
+      "src": "/project-media/projects/insomea/captures/Dashboared-ARABE.png",
+      "title": "Dashboard (Arabic Version)",
+      "note": "Arabic version of the dashboard for multilingual accessibility."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Dashboared-english.png",
+      "title": "Dashboard (English Version)",
+      "note": "English version of the dashboard with key management indicators."
     },
     {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Profil-Admin.png",
       "title": "Admin Profile",
-      "note": "Profile management, permissions, avatar change, and personal statistics."
+      "note": "Profile management, permissions, and personal statistics."
     },
-  {
+    {
       "kind": "image",
       "src": "/project-media/projects/insomea/captures/Profil-User.png",
       "title": "User Profile",
-      "note": "User profile view with limited permissions, organization info, conversation history access, and security settings."
+      "note": "User profile view with limited permissions, organization information, conversation history access, and security settings."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/User-create.png",
+      "title": "Create a User",
+      "note": "Form to add a new user with role assignment (Admin/User)."
+    },
+    {
+      "kind": "image",
+      "src": "/project-media/projects/insomea/captures/Users.png",
+      "title": "Supervised User Management",
+      "note": "List of users with their roles and supervision actions."
     }
   ]
 },
