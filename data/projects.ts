@@ -314,6 +314,12 @@ export const projects: Project[] = [
     image: "/images/info-z.png",
     media: [
       {
+      kind: "image",
+      src: "/project-media/projects/info-z/captures/login.png",
+      title: "Connexion sécurisée",
+      note: "Authentification classique ou SSO via Keycloak.",
+    },
+      {
         kind: "image",
         src: "/project-media/projects/info-z/captures/agency-operation.png",
         title: "Opération agence",
