@@ -310,7 +310,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/cherniamine/Domiciliation",
     description:
       "Migration du module de domiciliation d'Oracle Forms vers une architecture moderne pour banques et Banque Centrale.",
-    tags: ["Java", "Spring Boot" ,"Oracle", "Docker", "Angular" ],
+    tags: ["Java", "Spring Boot", "Angular", "Microservices", "Keycloak", "Oracle", "Docker"],
     image: "/images/info-z.png",
     media: [
       {

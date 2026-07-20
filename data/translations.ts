@@ -534,8 +534,9 @@ export const localeContent = {
           emoji: "🏦",
           githubUrl: "https://github.com/cherniamine/Domiciliation",
           description: "Migration du module de domiciliation d'Oracle Forms vers une architecture moderne pour banques et Banque Centrale.",
-          tags: ["Java", "Spring Boot",  "Oracle", "Docker","Angular"],
+          tags: ["Java", "Spring Boot", "Angular", "Microservices", "Keycloak", "Oracle", "Docker"],
           media: [
+             {kind: "image",src: "/project-media/projects/info-z/captures/Login.png",title: "Connexion sécurisée",note: "Authentification classique ou SSO via Keycloak."},
             { kind: "image", src: "/project-media/projects/info-z/captures/agency-operation.png", title: "Opération agence", note: "Flux métier principal côté agence." },
             { kind: "image", src: "/project-media/projects/info-z/captures/bct-taking-care.png", title: "Prise en charge BCT", note: "Traitement d'un accord Banque Centrale." },
             { kind: "image", src: "/project-media/projects/info-z/captures/bct-consultation.png", title: "Consultation accord", note: "Visualisation détaillée d'un accord BCT." },
@@ -792,8 +793,9 @@ export const localeContent = {
           emoji: "🏦",
           githubUrl: "https://github.com/cherniamine/Domiciliation",
           description: "Migration of the domiciliation module from Oracle Forms to a modern architecture for banks and the Central Bank.",
-          tags: ["Java", "Spring Boot","Oracle", "Docker","Angular"],
+          tags: ["Java", "Spring Boot", "Angular", "Microservices", "Keycloak", "Oracle", "Docker"],
           media: [
+            {kind: "image",src: "/project-media/projects/info-z/captures/Login.png",title: "Secure login",note: "Classic authentication or SSO via Keycloak."},
             { kind: "image", src: "/project-media/projects/info-z/captures/agency-operation.png", title: "Agency operation", note: "Main business flow on the agency side." },
             { kind: "image", src: "/project-media/projects/info-z/captures/bct-taking-care.png", title: "BCT support", note: "Processing of a Central Bank agreement." },
             { kind: "image", src: "/project-media/projects/info-z/captures/bct-consultation.png", title: "Agreement consultation", note: "Detailed visualization of a BCT agreement." },
