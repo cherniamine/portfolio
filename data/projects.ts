@@ -305,7 +305,7 @@ export const projects: Project[] = [
   {
     slug: "info-z-migration",
     title: "Migration bancaire vers Spring Boot & Angular",
-    org: "Stage · Société Info-Z",
+    org: "Stage · Info-Z (sous-traitance SMI)",
     emoji: "🏦",
     githubUrl: "https://github.com/cherniamine/Domiciliation",
     description:

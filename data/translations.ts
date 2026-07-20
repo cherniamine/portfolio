@@ -530,7 +530,7 @@ export const localeContent = {
         {
           slug: "info-z-migration",
           title: "Migration bancaire vers Spring Boot & Angular",
-          org: "Stage · Société Info-Z",
+          org: "Stage · Info-Z (sous-traitance SMI)",
           emoji: "🏦",
           githubUrl: "https://github.com/cherniamine/Domiciliation",
           description: "Migration du module de domiciliation d'Oracle Forms vers une architecture moderne pour banques et Banque Centrale.",
@@ -789,7 +789,7 @@ export const localeContent = {
         {
           slug: "info-z-migration",
           title: "Banking migration to Spring Boot & Angular",
-          org: "Internship · Info-Z",
+          org: "Internship · Info-Z (SMI subcontracting)",
           emoji: "🏦",
           githubUrl: "https://github.com/cherniamine/Domiciliation",
           description: "Migration of the domiciliation module from Oracle Forms to a modern architecture for banks and the Central Bank.",
